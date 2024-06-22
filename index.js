@@ -14,8 +14,20 @@ class Timer {
   };
 
   tick = () => {
-    console.log("tick");
+    if (this.timeLeft <= 0) {
+      this.pause();
+    } else {
+      this.timeLeft = this.timeLeft - 1;
+    }
   };
+
+  get timeLeft() {
+    return parseFloat(this.durationInput.value);
+  }
+
+  set timeLeft(time) {
+    this.durationInput.value = time;
+  }
 
   pause = () => {
     clearInterval(this.interval);
