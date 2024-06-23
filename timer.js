@@ -1,4 +1,4 @@
-const smoothInterval = 0.05;
+const smoothInterval = 0.02;
 class Timer {
   constructor(durationInput, startBtn, pauseBtn, callbacks) {
     this.durationInput = durationInput;
@@ -16,7 +16,7 @@ class Timer {
 
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeLeft);
     }
     this.tick();
     this.interval = setInterval(this.tick, smoothInterval * 1000);
@@ -29,8 +29,8 @@ class Timer {
         this.onComplete();
       }
     } else {
-      this.onTick();
       this.timeLeft = this.timeLeft - smoothInterval;
+      this.onTick(this.timeLeft);
     }
   };
 
