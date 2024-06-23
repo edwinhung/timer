@@ -1,3 +1,4 @@
+const smoothInterval = 0.05;
 class Timer {
   constructor(durationInput, startBtn, pauseBtn, callbacks) {
     this.durationInput = durationInput;
@@ -18,7 +19,7 @@ class Timer {
       this.onStart();
     }
     this.tick();
-    this.interval = setInterval(this.tick, 1000);
+    this.interval = setInterval(this.tick, smoothInterval * 1000);
   };
 
   tick = () => {
@@ -29,7 +30,7 @@ class Timer {
       }
     } else {
       this.onTick();
-      this.timeLeft = this.timeLeft - 1;
+      this.timeLeft = this.timeLeft - smoothInterval;
     }
   };
 
@@ -38,7 +39,7 @@ class Timer {
   }
 
   set timeLeft(time) {
-    this.durationInput.value = time;
+    this.durationInput.value = time.toFixed(2);
   }
 
   pause = () => {

@@ -13,7 +13,7 @@ const timer = new Timer(durationInput, startBtn, pauseBtn, {
   },
   onTick() {
     circle.setAttribute("stroke-dashoffset", currentOffset);
-    currentOffset -= 50;
+    currentOffset -= 1;
   },
   onComplete() {
     console.log("Completed");
